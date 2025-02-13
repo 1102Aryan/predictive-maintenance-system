@@ -10,7 +10,7 @@
 6. [Questions, Assumptions, and Caveats](#questions-assumptions-and-caveats) 
    - [Questions](#questions)
    - [Assumptions](#assumptions)
-   - [Caveats](#caveats)  
+   - [Caveats](#caveats) 
 7. [How to Run the Project](#how-to-run-the-project)  
    - [Prerequisites](#prerequisites)  
    - [Installation](#installation)  
@@ -30,7 +30,7 @@ Predictive maintenance can reduce downtime, optimize maintenance schedules, decr
 |UID|Unique Identifier|
 |ProductID|Serial Number|
 |Air Temperature|Room temperature in Kelvin|
-|Process Temperature|Temperute during process in Kelvin|
+|Process Temperature|Temperature during process in Kelvin|
 |Rotational Speed|Rotational speed applied in RPM|
 |Torque|Torque applied in Nm|
 |Tool Wear|Duration of tool usage in minutes|
@@ -40,11 +40,15 @@ Predictive maintenance can reduce downtime, optimize maintenance schedules, decr
 |Target|Failure or not|
 |Failure Type|Specific type of failure|
 ## Dashboard
-The dashboard aims to visualize the data trends and provide insights for predective maintenance decisions.
-![alt text](image.png)
+![Predictive Dashboard](Images/dashboard.png)
+The dashboard visualizes data trends to support predictive maintenance decisions. It effectively tracks the failure rate, keeping it below the 5% target. However, further improvements should aim to reduce the failure rate to 2%.
+
+The dashboard reveals that tool wear duration has a strong correlation with the failure rate, highlighting the need for proactive maintenance.
+![Scatter Matrix](Images/graph.png)
+The scatter matrix visualizes the correlation and distribution of different input variables. This helps identify potential issues or outliers that may require further analysis or handling.
 ## Technical Analysis
-Random forest classification was chosen for the predictive maintenance due to how it can handle outliers and noise such as unexpected spikes in tool wears. Random forest is ideal for achieving high accuracy.
-Logistic regression was selected to compare its performance against the more complex Random Forest model. 
+Random Forest classification was selected for predictive maintenance due to its robustness against outliers and noise, such as unexpected spikes in tool wear. Its ensemble learning approach enhances accuracy and reliability. Random Forest is ideal for achieving high accuracy.
+Logistic Regression was selected to compare its performance against the more complex Random Forest model. 
 
 The comparison aimed to evaluate whether the added complexity of Random Forest significantly improves the predective accuracy for maintenance failures.
 |Model|Accuracy|Precision|Recall|F1-Score|
@@ -52,25 +56,28 @@ The comparison aimed to evaluate whether the added complexity of Random Forest s
 |Random Forest|98.6%|99.9%|99.9%|99.9%|
 |Logistic Regression|97.5%|99.9%| 99.9%|99.9%
 
-Through Comparison and Improvement, tests when done by removing input feature that have the least correlation to the target. This led to the accuracy of the model to decrease. This might be due to issues such as the complexity of the model being lowered.
+Feature selection experiments showed that removing low-correlation inputs unexpectedly decreased model accuracy. This suggests that even seemingly less relevant features contribute to the overall predictive power, likely due to complex feature interactions. This suggests that reducing model complexity may negatively impact predictive performance.
 ## Recommendations
-- If model predicts a high probability of failure with the system, then schedule a preventative maintenance check
+- If the model predicts a high likelihood of failure, a preventive maintenance check should be scheduled to avoid potential downtime.
 - Machines with high tool wear need to have more frequent inspections.
+- Regularly retrain the model with updated data to adapt to changes in machine behavior and improve accuracy over time.
+- Frequent maintenance may reduce failures but increase operational costs. A balance between predictive accuracy and cost efficiency is crucial.
 ## Questions, Assumptions, and Caveats
 ### Questions
-- How sensitivity is the model to missing data?
+- How sensitive is the model to missing data?
+- What impact does missing data have on the prediction accuracy, and what strategies can be used to mitigate this?
 ### Assumptions
 - Assumed that the system works in a regular environmental condition
 ### Caveats
-- Outliers detected in tool wear may represent error 
-- Model may not be taking account of external factors (e.g. humidity)
+- Outliers detected in tool wear data may indicate errors in measurement or anomalies requiring further investigation.
+- This suggests that reducing model complexity may negatively impact predictive performance.
 ## How to run the project
 1. Prerequisites
     - Python 3
     - Jupyter Notebook
     - Libraries (pandas, scikit-learn, matplotlib)
 2. Installation
-    - git clone <repo_url>
+    - git clone <https://github.com/1102Aryan/predictive-maintenance-system.git>
 3. Running the project
     - Open Failure prediction model.ipynb
     - run the cells sequentially 
