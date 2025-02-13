@@ -40,9 +40,8 @@ Predictive maintenance can reduce downtime, optimize maintenance schedules, decr
 |Target|Failure or not|
 |Failure Type|Specific type of failure|
 ## Dashboard
-The dashboard aims to visualize the data trends and provide insights for predective maintenance decisions. These include:
-- Real-time failure predictions
-- Visualisation of tool wear, torque, and rotational speed over time
+The dashboard aims to visualize the data trends and provide insights for predective maintenance decisions.
+![alt text](image.png)
 ## Technical Analysis
 Random forest classification was chosen for the predictive maintenance due to how it can handle outliers and noise such as unexpected spikes in tool wears. Random forest is ideal for achieving high accuracy.
 Logistic regression was selected to compare its performance against the more complex Random Forest model. 
